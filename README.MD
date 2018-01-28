@@ -24,4 +24,3 @@ The tool takes the following inputs
 * [endtime] - End time of you your audit ( In Epoch Format with millisecods -- add 000 at the end to convert to milliseconds)
 
  #### Use this Date to Epoch converter [here](https://www.epochconverter.com/) to convert your time.
-s
