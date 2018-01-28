@@ -1,6 +1,5 @@
 
 var https = require('https');
-
 var prompt = require('prompt');
 
 //
@@ -50,8 +49,8 @@ prompt.get([
 
   var auth = "Basic " + new Buffer(username + ":" + password).toString("base64");
   var request = require('request');
-  var url = "https://api.enterprise.apigee.com/v1/audits/organizations/"+org_name+"/users/?expand=true&startTime="+startTime+"&endTime="+endTime;
-  console.log('requesting data....');
+  var url = "https://api.enterprise.apigee.com/v1/audits/organizations/"+org_name+"/users/?expand=true&startTime="+startTime+"&endTime="+endTime ;
+
   request.get( {
       url : url,
       headers : {
@@ -59,11 +58,6 @@ prompt.get([
       }
     }, function(error, response, body) {
         console.log('body : ', body);
-        // console.log('response : ', response);
-        if(error) {
-          console.log('error: ', error);
-        }
-
     } );
 
 });
