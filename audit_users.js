@@ -57,7 +57,11 @@ prompt.get([
           "Authorization" : auth
       }
     }, function(error, response, body) {
-        console.log('body : ', body);
+          console.log('body : ', body);
+        if(error) {
+          console.log('error: ', error);
+        }
+
     } );
 
 });
