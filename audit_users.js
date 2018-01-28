@@ -1,10 +1,11 @@
 
 var https = require('https');
+var alasql = require('alasql');
 var prompt = require('prompt');
 
-//
-// Start the prompt
-//
+
+//Start the prompt
+
 prompt.start();
 
 //
@@ -49,19 +50,28 @@ prompt.get([
 
   var auth = "Basic " + new Buffer(username + ":" + password).toString("base64");
   var request = require('request');
-  var url = "https://api.enterprise.apigee.com/v1/audits/organizations/"+org_name+"/users/?expand=true&startTime="+startTime+"&endTime="+endTime ;
-
+  var url = "https://api.enterprise.apigee.com/v1/audits/organizations/"+org_name+"?expand=true&startTime="+startTime+"&endTime="+endTime ;
+  console.log('requesting data....');
   request.get( {
       url : url,
       headers : {
           "Authorization" : auth
       }
-    }, function(error, response, body) {
-          console.log('body : ', body);
-        if(error) {
-          console.log('error: ', error);
-        }
+    },
 
-    } );
+      function(error, response, body) {
+
+      var returnedData = JSON.parse(body);
+      //using alasql to parse json data - this is quite fast for in memory operation
+      var userList = alasql('SELECT DISTINCT user FROM ?',[returnedData.auditRecord]);
+      var userCount = alasql('SELECT  COUNT(DISTINCT user) AS Number_of_Users FROM ?',[returnedData.auditRecord]);
+      console.log(userList);
+      console.log(userCount);
+
+      if(error) {
+        console.log('error: ', error);
+      }
+    }
+  );
 
 });
