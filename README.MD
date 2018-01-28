@@ -10,7 +10,7 @@
 
 # Usage
 ```sh
-$ node audit_user.js
+$ node audit_users.js
 ````
 
 ### User Inputs
