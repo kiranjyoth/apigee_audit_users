@@ -1,4 +1,4 @@
-# Apigee Audit Users tool
+# Node JS tool for Auditing Apigee Users in a given timeframe
 
 # Installation
 
